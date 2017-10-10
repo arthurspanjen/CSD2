@@ -1,14 +1,39 @@
 import simpleaudio as sa
 import time
-KICK = sa.WaveObject.from_wave_file("trappy.wav")
-BLIEP = sa.WaveObject.from_wave_file("bliep.wav")
-JACKU = sa.WaveObject.from_wave_file("jacku.wav")
 
+print("kies soundpack: ")
+print("1. 808")
+print("2. lofi")
+print("3. trap")
+
+
+sp = input("-> ")
+while sp.isdigit() == False:
+    print("NEE!!!")
+    sp=input("-> ")
+sp=int(sp)
+
+if sp == 1:
+    KICK = sa.WaveObject.from_wave_file("808kick.wav")
+    BLIEP = sa.WaveObject.from_wave_file("808cow.wav")
+    JACKU = sa.WaveObject.from_wave_file("808clap.wav")
+elif sp == 2:
+    KICK = sa.WaveObject.from_wave_file("lofiKick.wav")
+    BLIEP = sa.WaveObject.from_wave_file("lofiMisc.wav")
+    JACKU = sa.WaveObject.from_wave_file("lofiSnare.wav")
+elif sp == 3:
+    KICK = sa.WaveObject.from_wave_file("trapKick.wav")
+    BLIEP = sa.WaveObject.from_wave_file("trapMisc.wav")
+    JACKU = sa.WaveObject.from_wave_file("jacku.wav")
+
+tempo= int(input("tempo -> "))
+tempo= float((60/tempo) * 0.5)
+print(tempo)
 kick = input("kicklijst---> ")
 l1 = list(map(int, kick.split()))
-bliep = input("blieplijst--> ")
+bliep = input("misclijst---> ")
 l2 = list(map(int, bliep.split()))
-jacku = input("jackulijst--> ")
+jacku = input("snarelijst--> ")
 l3 = list(map(int, jacku.split()))
 
 x=0
@@ -76,9 +101,9 @@ while (x < 1):
             play_obj_kick = KICK.play()
         if l2[-1] == 1:
             play_obj_kick = BLIEP.play()
-        if l2[-1] == 1:
+        if l3[-1] == 1:
             play_obj_kick = JACKU.play()
-    time.sleep(0.5)
+    time.sleep(tempo)	
     y=y+1
 
 
